@@ -78,7 +78,7 @@ public class Sql {
     public static void update() throws SQLException{
               
      Scanner sn = new Scanner(System.in);
-     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/beer","root","root");
+     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/beer","root","root");// Esto conecta con la base de datos 
      Statement st = con.createStatement();
      ResultSet rs = st.executeQuery("Select * from beer");
      while (rs.next()){
@@ -90,12 +90,12 @@ public class Sql {
     String col= sn.nextLine();
     System.out.println("Dime que valor modificaras: (ENTRE COMILLAS PLIS 'valor') ");
         String valor_v = sn.nextLine();
-        System.out.println("Dime el valor nuevo: (DEBE IR ENTRE COMILLAS 'valor') ");
+        System.out.println("Dime el valor nuevo: ( ENTRE COMILLAS PLIS 'valor') ");
         String valor_n = sn.nextLine();
         if (col == "name") {
-            int update = st.executeUpdate("Update beer set " + col + " = " + valor_n + " WHERE " + col + " = " + valor_v);
+            int update = st.executeUpdate("Update beer set " + col + " = " + valor_n + " WHERE " + col + " = " + valor_v);//Aqui hacemos el update 
         } else {
-            int update = st.executeUpdate("Update beer set " + col + " = " + valor_n + " WHERE " + col + " = " + valor_v);
+            System.out.println("fallo al hacer un update"); // por si falla el update te saldra esto mas las excepciones
         }
         System.out.println("sistema actualizado: ");
         ResultSet resultado = st.executeQuery("Select * from Beer");
@@ -141,6 +141,7 @@ public class Sql {
         }
 
     
-    
+    // El rowback lo hace ya que si en el insert el apellido no se mete o el nombre no actualiza la tabla 
+    //duda como ponner que el fallo es en un insert ,update o select .
     
 
